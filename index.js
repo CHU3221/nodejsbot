@@ -30,6 +30,9 @@ client.on('message', (message) => {
   if(message.content == 'ping') {
     return message.reply('pong');
   }
+
+  //version
+  //2 39정답 오류 패치 수정
 //help
   if(message.content == '?help') {
     let commandList = [
@@ -68,6 +71,8 @@ client.on('message', (message) => {
 
     message.channel.send(embed)
   }
+//잡담
+
 
 //배고픈 무토 -
   if(message.content == '?배고픈무토') {
@@ -430,8 +435,6 @@ if(message.content == '?39무루파') {return message.reply("\n해당 문제의 
 if(message.content == '?39뮤네') {return message.reply("\n해당 문제의 정답은 2번입니다.");} 
 if(message.content == '?39미스포츈프로텍션') {return message.reply("\n해당 문제의 정답은 2번입니다.");} 
 if(message.content == '?39미하일') {return message.reply("\n해당 문제의 정답은 4번입니다.");} 
-if(message.content == '?39반반') {return message.reply("\n해당 문제의 정답은 4번입니다.");} 
-if(message.content == '?39반반') {return message.reply("\n해당 문제의 정답은 2번입니다.");} 
 if(message.content == '?39뱀부체어') {return message.reply("\n해당 문제의 정답은 4번입니다.");} 
 if(message.content == '?39버섯버섯광산') {return message.reply("\n해당 문제의 정답은 1번입니다.");} 
 if(message.content == '?39벅카스D') {return message.reply("\n해당 문제의 정답은 1번입니다.");} 
@@ -615,11 +618,16 @@ if(message.content == '?39카이저') {return message.reply("\n2번 선택지가
 if(message.content == '?39큐트') {return message.reply("\n2번 선택지가 '게렉터' 일경우... 정답 : 2\n2번 선택지가 '리사' 일경우... 정답 : 2\n2번 선택지가 '네벨' 일경우... 정답 : 3");} 
 if(message.content == '?39펜릴') {return message.reply("\n2번 선택지가 '세빌' 일경우... 정답 : 2\n2번 선택지가 '핑크테니' 일경우... 정답 : 1");} 
 if(message.content == '?39히어로') {return message.reply("\n2번 선택지가 '나이트로드' 일경우... 정답 : 4\n2번 선택지가 '플레임위자드' 일경우... 정답 : 3");} 
+
+//v2 patch
+if(message.content == '?39반반') {return message.reply("\n2번 선택지가 '해군함장' 일경우... 정답 : 4\n2번 선택지가 '샤모스' 일경우... 정답 : 2");} 
+
 // - the Seed 39층 문제지
 
 
 
 
+//maple.gg 크롤링 -
 
 
 
@@ -628,35 +636,10 @@ if(message.content == '?39히어로') {return message.reply("\n2번 선택지가
 
 
 
+//maple.gg 크롤링 -
 
-
-
-
-
-  if(message.content.startsWith('!전체공지')) {
-    if(checkPermission(message)) return
-    if(message.member != null) { // 채널에서 공지 쓸 때
-      let contents = message.content.slice('!전체공지'.length);
-      message.member.guild.members.array().forEach(x => {
-        if(x.user.bot) return;
-        x.user.send(`<@${message.author.id}> ${contents}`);
-      });
-  
-      return message.reply('공지를 전송했습니다.');
-    } else {
-      return message.reply('채널에서 실행해주세요.');
-    }
-  }
 });
 
-function checkPermission(message) {
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-    message.channel.send(`<@${message.author.id}> ` + "명령어를 수행할 관리자 권한을 소지하고 있지않습니다.")
-    return true;
-  } else {
-    return false;
-  }
-}
 
 function changeCommandStringLength(str, limitLen = 8) {
   let tmp = str;
