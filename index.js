@@ -1,6 +1,18 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = process.env.token;
+const token = process.env.token;//디코봇 토큰
+
+const math = require("mathjs");
+
+//크롤링 위한 부분~
+/*
+const acios = require("axios");
+const log = console.log;
+var charname = "캐릭터 이름"
+*/
+
+//~크롤링 위한 부분
+
 
 client.on('ready', () => {
   console.log('켰다.');
@@ -61,7 +73,7 @@ client.on('message', (message) => {
     let embed = new Discord.RichEmbed()
       .setAuthor('메잘알 Bot')
       .setColor('#186de6')
-      .setFooter(`제작자: 루프이론(리부트1)`)
+      .setFooter(`제작자: 루프이론(리부트1) v1.01`)
     
     commandList.forEach(x => {
       commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
@@ -71,8 +83,30 @@ client.on('message', (message) => {
 
     message.channel.send(embed)
   }
-//잡담
+//잡담-
 
+if(message.content.startsWith("메잘알봇")){
+  if(message.content.endsWith("된다고 생각해?")){
+    const result = Math.round(Math.random());
+    msg.reply(`${result ? "네" : "아뇨"}`);
+
+  }
+  else if(message.content.endsWith("할래?")){
+    const result = Math.round(Math.random());
+    msg.reply(`${result ? "저라면... 할거에요" : "아뇨... 하지 않을 거에요"}`);
+
+  }
+  else if(message.content.endsWith("지를까?") || message.content.endsWith("질러?")){
+    const result = Math.round(Math.random());
+    msg.reply(`${result ? "지금 지르면 뜰 거 같아요" : ""}`);
+
+  }
+  else if(message.content.endsWith("ㄱ?")){
+    const result = Math.round(Math.random());
+    msg.reply(`${result ? "ㄱㄱ" : "ㄴㄴ"}`);
+
+  }
+}
 
 //배고픈 무토 -
   if(message.content == '?배고픈무토') {
@@ -366,7 +400,7 @@ if(message.content == '?시드49') {return message.reply("\n49층\n\ntip\n없음
 if(message.content == '?시드50') {return message.reply("\n50층\n보스 처치");} 
 
 
-// the Seed 39층 문제지 -
+// the Seed 39층 문제지 ~
 // ?39[1번 선택지]
 if(message.content == '?3910주년이벤트홀') {return message.reply("\n해당 문제의 정답은 3번입니다.");} 
 if(message.content == '?393월토끼의자') {return message.reply("\n해당 문제의 정답은 1번입니다.");} 
@@ -622,12 +656,40 @@ if(message.content == '?39히어로') {return message.reply("\n2번 선택지가
 //v2 patch
 if(message.content == '?39반반') {return message.reply("\n2번 선택지가 '해군함장' 일경우... 정답 : 4\n2번 선택지가 '샤모스' 일경우... 정답 : 2");} 
 
-// - the Seed 39층 문제지
+// ~ the Seed 39층 문제지
 
 
 
 
-//maple.gg 크롤링 -
+//maple.gg 크롤링 ~
+// ?지지[캐릭터이름]
+// ?무릉[캐릭터이름]
+// ?시드[캐릭터이름]
+// ?업적[캐릭터이름]
+// ?
+/*
+if(message.content.startsWith("?지지".Charname)){
+  let img = GGSearchCharImg(Charname);//캐릭터이미지
+  let embed = new Discord.RichEmbed()
+    .setTitle('')//캐릭터명
+    .setDescription('')//마지막 정보 갱신일
+    .setColor('#3EB489')
+    .addBlankField()
+    .addField('무릉도장 최고기록', 'charname')// [층] [분,초]
+    .addField('더 시드 최고기록', '')// [층] [분,초]
+    .addField('유니온', '')//[등급] [레벨합]
+    .addField('업적', '')//[등급] [포인트]
+    .addField('재료', '')
+    .addBlankField()
+    .setFooter('Maple.GG 제공')
+
+  message.channel.send(embed)
+*/
+
+
+
+}
+// ~ maple.gg 크롤링
 
 
 
@@ -635,11 +697,9 @@ if(message.content == '?39반반') {return message.reply("\n2번 선택지가 '�
 
 
 
-
-//maple.gg 크롤링 -
-
+//~봇 내용
 });
-
+//함수 시작~
 
 function changeCommandStringLength(str, limitLen = 8) {
   let tmp = str;
@@ -651,6 +711,56 @@ function changeCommandStringLength(str, limitLen = 8) {
 
   return tmp;
 }
+
+
+/*
+//ggSearch
+function GGSearchCharImg(length){
+  
+
+}
+function GGSearchCharName(){
+
+
+}
+function GGSearchLastUpd(){
+
+
+}
+function GGsearchMulungFloors(){
+
+
+}
+function GGsearchMulungTime(){
+
+
+}
+function GGSearchTofOz(){
+
+
+}
+function GGSearchTofOzTime(){
+
+
+}
+function GGSearchUnion(){
+
+
+}
+function GGSearchUnionLevel(){
+
+
+}
+function GGsearchAch(){
+
+
+}
+function GGsearchAchPoint(){
+
+
+}
+*/
+
 
 
 client.login(token);
