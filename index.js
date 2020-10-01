@@ -88,24 +88,27 @@ client.on('message', (message) => {
 if(message.content.startsWith("?메잘알봇")){
   if(message.content.endsWith("된다고 생각해?")){
     const result = Math.round(Math.random());
-    msg.reply(`${result ? "네" : "아뇨"}`);
+    return message.reply(`'${result ? "\n네" : "\n아뇨"}`);
 
   }
   else if(message.content.endsWith("할래?") || message.content.endsWith("할거야?")){
     const result = Math.round(Math.random());
-    msg.reply(`${result ? "저라면... 할거에요" : "아뇨... 하지 않을 거에요"}`);
+    return message.reply(`${result ? "\n저라면... 할거에요" : "\n아뇨... 하지 않을 거에요"}`);
 
   }
   else if(message.content.endsWith("지를까?") || message.content.endsWith("질러?")){
     const result = Math.round(Math.random());
-    msg.reply(`${result ? "지금 지르면 뜰 거 같아요" : ""}`);
+    return message.reply(`${result ? "\n지금 지르면 뜰 거 같아요" : "\n질러도 안 뜰 거 같아요"}`);
 
   }
   else if(message.content.endsWith("ㄱ?")){
     const result = Math.round(Math.random());
-    msg.reply(`${result ? "ㄱㄱ" : "ㄴㄴ"}`);
+    return message.reply(`${result ? "\nㄱㄱ" : "\nㄴㄴ"}`);
 
   }
+  else return message.reply("\n...)");}
+
+
 }
 
 //배고픈 무토 -
