@@ -1,18 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = process.env.token;//디코봇 토큰
-
-const Math = require("mathjs");
-
-//크롤링 위한 부분~
-/*
-const acios = require("axios");
-const log = console.log;
-var charname = "캐릭터 이름"
-*/
-
-//~크롤링 위한 부분
-
+const token = process.env.token;
 
 client.on('ready', () => {
   console.log('켰다.');
@@ -42,9 +30,6 @@ client.on('message', (message) => {
   if(message.content == 'ping') {
     return message.reply('pong');
   }
-
-  //version
-  //2 39정답 오류 패치 수정
 //help
   if(message.content == '?help') {
     let commandList = [
@@ -73,7 +58,7 @@ client.on('message', (message) => {
     let embed = new Discord.RichEmbed()
       .setAuthor('메잘알 Bot')
       .setColor('#186de6')
-      .setFooter(`제작자: 루프이론(리부트1) v1.01`)
+      .setFooter(`제작자: 루프이론(리부트1)`)
     
     commandList.forEach(x => {
       commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
@@ -83,33 +68,6 @@ client.on('message', (message) => {
 
     message.channel.send(embed)
   }
-//잡담-
-
-if(message.content.startsWith("?메잘알봇")){
-  if(message.content.endsWith("된다고 생각해?")){
-    const result = Math.round(Math.random());
-    return message.reply(`'${result ? "\n네" : "\n아뇨"}`);
-
-  }
-  else if(message.content.endsWith("할래?") || message.content.endsWith("할거야?")){
-    const result = Math.round(Math.random());
-    return message.reply(`${result ? "\n저라면... 할거에요" : "\n아뇨... 하지 않을 거에요"}`);
-
-  }
-  else if(message.content.endsWith("지를까?") || message.content.endsWith("질러?")){
-    const result = Math.round(Math.random());
-    return message.reply(`${result ? "\n지금 지르면 뜰 거 같아요" : "\n질러도 안 뜰 거 같아요"}`);
-
-  }
-  else if(message.content.endsWith("ㄱ?")){
-    const result = Math.round(Math.random());
-    return message.reply(`${result ? "\nㄱㄱ" : "\nㄴㄴ"}`);
-
-  }
-  else return message.reply("\n...)");}
-
-
-}
 
 //배고픈 무토 -
   if(message.content == '?배고픈무토') {
@@ -403,7 +361,7 @@ if(message.content == '?시드49') {return message.reply("\n49층\n\ntip\n없음
 if(message.content == '?시드50') {return message.reply("\n50층\n보스 처치");} 
 
 
-// the Seed 39층 문제지 ~
+// the Seed 39층 문제지 -
 // ?39[1번 선택지]
 if(message.content == '?3910주년이벤트홀') {return message.reply("\n해당 문제의 정답은 3번입니다.");} 
 if(message.content == '?393월토끼의자') {return message.reply("\n해당 문제의 정답은 1번입니다.");} 
@@ -659,40 +617,8 @@ if(message.content == '?39히어로') {return message.reply("\n2번 선택지가
 //v2 patch
 if(message.content == '?39반반') {return message.reply("\n2번 선택지가 '해군함장' 일경우... 정답 : 4\n2번 선택지가 '샤모스' 일경우... 정답 : 2");} 
 
-// ~ the Seed 39층 문제지
 
-
-
-
-//maple.gg 크롤링 ~
-// ?지지[캐릭터이름]
-// ?무릉[캐릭터이름]
-// ?시드[캐릭터이름]
-// ?업적[캐릭터이름]
-// ?
-/*
-if(message.content.startsWith("?지지".Charname)){
-  let img = GGSearchCharImg(Charname);//캐릭터이미지
-  let embed = new Discord.RichEmbed()
-    .setTitle('')//캐릭터명
-    .setDescription('')//마지막 정보 갱신일
-    .setColor('#3EB489')
-    .addBlankField()
-    .addField('무릉도장 최고기록', 'charname')// [층] [분,초]
-    .addField('더 시드 최고기록', '')// [층] [분,초]
-    .addField('유니온', '')//[등급] [레벨합]
-    .addField('업적', '')//[등급] [포인트]
-    .addField('재료', '')
-    .addBlankField()
-    .setFooter('Maple.GG 제공')
-
-  message.channel.send(embed)
-*/
-
-
-
-}
-// ~ maple.gg 크롤링
+// - the Seed 39층 문제지
 
 
 
@@ -700,9 +626,40 @@ if(message.content.startsWith("?지지".Charname)){
 
 
 
-//~봇 내용
+
+
+
+
+
+
+
+
+
+
+  if(message.content.startsWith('!전체공지')) {
+    if(checkPermission(message)) return
+    if(message.member != null) { // 채널에서 공지 쓸 때
+      let contents = message.content.slice('!전체공지'.length);
+      message.member.guild.members.array().forEach(x => {
+        if(x.user.bot) return;
+        x.user.send(`<@${message.author.id}> ${contents}`);
+      });
+  
+      return message.reply('공지를 전송했습니다.');
+    } else {
+      return message.reply('채널에서 실행해주세요.');
+    }
+  }
 });
-//함수 시작~
+
+function checkPermission(message) {
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) {
+    message.channel.send(`<@${message.author.id}> ` + "명령어를 수행할 관리자 권한을 소지하고 있지않습니다.")
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function changeCommandStringLength(str, limitLen = 8) {
   let tmp = str;
@@ -714,56 +671,6 @@ function changeCommandStringLength(str, limitLen = 8) {
 
   return tmp;
 }
-
-
-/*
-//ggSearch
-function GGSearchCharImg(length){
-  
-
-}
-function GGSearchCharName(){
-
-
-}
-function GGSearchLastUpd(){
-
-
-}
-function GGsearchMulungFloors(){
-
-
-}
-function GGsearchMulungTime(){
-
-
-}
-function GGSearchTofOz(){
-
-
-}
-function GGSearchTofOzTime(){
-
-
-}
-function GGSearchUnion(){
-
-
-}
-function GGSearchUnionLevel(){
-
-
-}
-function GGsearchAch(){
-
-
-}
-function GGsearchAchPoint(){
-
-
-}
-*/
-
 
 
 client.login(token);
