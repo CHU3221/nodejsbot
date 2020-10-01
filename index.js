@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.env.token;//디코봇 토큰
 
-const math = require("mathjs");
+const Math = require("mathjs");
 
 //크롤링 위한 부분~
 /*
@@ -85,13 +85,13 @@ client.on('message', (message) => {
   }
 //잡담-
 
-if(message.content.startsWith("메잘알봇")){
+if(message.content.startsWith("?메잘알봇")){
   if(message.content.endsWith("된다고 생각해?")){
     const result = Math.round(Math.random());
     msg.reply(`${result ? "네" : "아뇨"}`);
 
   }
-  else if(message.content.endsWith("할래?")){
+  else if(message.content.endsWith("할래?") || message.content.endsWith("할거야?")){
     const result = Math.round(Math.random());
     msg.reply(`${result ? "저라면... 할거에요" : "아뇨... 하지 않을 거에요"}`);
 
